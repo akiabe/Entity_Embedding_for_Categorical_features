@@ -20,8 +20,12 @@ def get_model(df, categorical_cols):
         outputs.append(out)
 
     x = layers.Concatenate()(outputs)
+    #x = layers.BatchNormalization()(x)
+
     x = layers.Dense(300, activation="relu")(x)
     x = layers.Dropout(0.3)(x)
+    #x = layers.BatchNormalization()(x)
+
     y = layers.Dense(1, activation="sigmoid")(x)
     model = Model(inputs=inputs, outputs=y)
 
